@@ -1,11 +1,11 @@
-query getActors{
+query getActors {
    actors {
     id
     name
   }
 }
 
-query getMovies{
+query getMovies {
   movies{
     id
     title
