@@ -1,0 +1,52 @@
+type Actor {
+  id: ID!
+  name: String!
+}
+
+type Movie {
+  id: ID!
+  title: String!
+  actors: [Actor]
+  year: Int!
+}
+
+type Query {
+  actor(id: ID!): Actor
+  movie(id: ID!): Movie
+  actors: [Actor]
+  movies: [Movie]
+}
+
+input ActorInput {
+  id: ID
+  name: String!
+}
+
+input MovieInput {
+  id: ID
+  title: String
+  actors: [ActorInput]
+  year: Int
+}
+
+type ActorPayload {
+  ok: Boolean
+  actor: Actor
+}
+
+type MoviePayload {
+  ok: Boolean
+  movie: Movie
+}
+
+type Mutation {
+  createActor(input: ActorInput) : ActorPayload
+  createMovie(input: MovieInput) : MoviePayload
+  updateActor(id: ID!, input: ActorInput) : ActorPayload
+  updateMovie(id: ID!, input: MovieInput) : MoviePayload
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}
